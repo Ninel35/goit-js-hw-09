@@ -32,14 +32,13 @@ const options = {
   minuteIncrement: 1,
     onClose(selectedDates) {
         if (new Date().getTime() >= selectedDates[0].getTime()) {
-            alert("ggggggggggggggggggggggggggggg");
-            console.log("text");
+            alert("Please choose a date in the future");
         } else {
             btn.disabled = false; 
         }
   },
 };
-console.log(typeof(options.defaultDate))
+
 
 const inputDate = document.querySelector("#datetime-picker");
 const fp = flatpickr(inputDate, options);
@@ -61,23 +60,21 @@ function handlerBtn(evt) {
             clearInterval(interval);
             return;
         }
-        
-        timer.days.textContent = convertMs(timeLeft).days;
-        if (convertMs(timeLeft).days <10) timer.days.textContent = "0" + convertMs(timeLeft).days;  
-        else timer.days.textContent = convertMs(timeLeft).days; 
+        const convertor = convertMs(timeLeft);
+        timer.days.textContent = convertor.days;
+        if (convertor.days <10) timer.days.textContent = "0" + convertor.days;  
+        else timer.days.textContent = convertor.days; 
 
-        if (convertMs(timeLeft).hours <10) timer.hours.textContent = "0" + convertMs(timeLeft).hours;  
-        else timer.hours.textContent = convertMs(timeLeft).hours;  
+        if (convertor.hours <10) timer.hours.textContent = "0" + convertor.hours;  
+        else timer.hours.textContent = convertor.hours;  
 
-        if (convertMs(timeLeft).minutes < 10) timer.minutes.textContent = "0" + convertMs(timeLeft).minutes;
-        else timer.minutes.textContent = convertMs(timeLeft).minutes; 
+        if (convertor.minutes < 10) timer.minutes.textContent = "0" + convertor.minutes;
+        else timer.minutes.textContent = convertor.minutes; 
         
-        if (convertMs(timeLeft).seconds < 10) timer.seconds.textContent = "0" + convertMs(timeLeft).seconds; 
-        else timer.seconds.textContent = convertMs(timeLeft).seconds;
+        if (convertor.seconds < 10) timer.seconds.textContent = "0" + convertor.seconds; 
+        else timer.seconds.textContent = convertor.seconds;
         
-       
-    }, 1000);
-    
-}
+       }, 1000);
+    }
 
 

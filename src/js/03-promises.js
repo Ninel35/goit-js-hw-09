@@ -4,16 +4,21 @@ form.addEventListener('submit', handlerBtn);
 function handlerBtn(evt) {
   evt.preventDefault();
   const firstDelay = Number(evt.target.elements.delay.value);
+
   const delayStep = Number(evt.target.elements.step.value);
 
   for (let i = 0; i < evt.target.elements.amount.value; i++){
     createPromise(i, firstDelay + delayStep * i)
       .then(({ position, delay }) => {
-      console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        setTimeout(() => {
+          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        }, delay);
       })
       .catch(({ position, delay }) => {
-      console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-    });
+        setTimeout(() => {
+          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        }, delay);
+     });
   }
 }
 

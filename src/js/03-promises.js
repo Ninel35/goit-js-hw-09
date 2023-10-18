@@ -7,7 +7,7 @@ function handlerBtn(evt) {
 
   const delayStep = Number(evt.target.elements.step.value);
 
-  for (let i = 0; i < evt.target.elements.amount.value; i++){
+  for (let i = 1; i <= evt.target.elements.amount.value; i++){
     createPromise(i, firstDelay + delayStep * i)
       .then(({ position, delay }) => {
         setTimeout(() => {
